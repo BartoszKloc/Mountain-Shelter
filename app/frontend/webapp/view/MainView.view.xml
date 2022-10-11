@@ -1,5 +1,25 @@
 <mvc:View controllerName="bksoft.frontend.controller.MainView" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <Switch id="themeSwitch" state="false" customTextOn="Dark theme" customTextOff="Light theme" change="toggleThemeChange" />
+    <Page id="page">
+        <Label text="  {i18n>changeThemeText}   " />
+        <Switch id="themeSwitch" state="false" customTextOn=" " customTextOff=" " change="toggleThemeChange" />
+        <FlexBox height="40vh" alignItems="Center" justifyContent="Center">
+            <items>
+                <Image id="capLogo" height="40vh" src="../webapp/images/baner.jpg" />
+            </items>
+        </FlexBox>
+        <FlexBox height="40vh" alignItems="Center" justifyContent="Center">
+            <items>
+                <GenericTile header="{i18n>roomsTileHeader}" press=".onBooksPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout">
+                    <TileContent footer="{i18n>roomsTileFooter}">
+                        <ImageContent src="../webapp/images/roomview.jpg" />
+                    </TileContent>
+                </GenericTile>
+                <GenericTile header="{i18n>mkresTileHeader}" press=".onBooksPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout">
+                    <TileContent footer="{i18n>mkresTileFooter}">
+                        <ImageContent src="sap-icon://newspaper" />
+                    </TileContent>
+                </GenericTile>
+            </items>
+        </FlexBox>
     </Page>
 </mvc:View>
