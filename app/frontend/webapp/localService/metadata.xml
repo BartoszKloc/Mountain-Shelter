@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:DataServices>
+        <Schema Namespace="CatalogService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Rooms" EntityType="CatalogService.Rooms">
+                    <NavigationPropertyBinding Path="beds" Target="Beds"/>
+                </EntitySet>
+                <EntitySet Name="Beds" EntityType="CatalogService.Beds">
+                    <NavigationPropertyBinding Path="room" Target="Rooms"/>
+                </EntitySet>
+                <EntitySet Name="Reservations" EntityType="CatalogService.Reservations">
+                    <NavigationPropertyBinding Path="Beds" Target="Beds"/>
+                    <NavigationPropertyBinding Path="Clients" Target="Clients"/>
+                </EntitySet>
+                <EntitySet Name="Clients" EntityType="CatalogService.Clients"/>
+            </EntityContainer>
+            <EntityType Name="Rooms">
+                <Key>
+                    <PropertyRef Name="number"/>
+                </Key>
+                <Property Name="number" Type="Edm.Guid" Nullable="false"/>
+                <NavigationProperty Name="beds" Type="Collection(CatalogService.Beds)" Partner="room"/>
+            </EntityType>
+            <EntityType Name="Beds">
+                <Key>
+                    <PropertyRef Name="number"/>
+                </Key>
+                <Property Name="number" Type="Edm.Guid" Nullable="false"/>
+                <NavigationProperty Name="room" Type="CatalogService.Rooms" Partner="beds">
+                    <ReferentialConstraint Property="room_number" ReferencedProperty="number"/>
+                </NavigationProperty>
+                <Property Name="room_number" Type="Edm.Guid"/>
+            </EntityType>
+            <EntityType Name="Reservations">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <NavigationProperty Name="Beds" Type="CatalogService.Beds">
+                    <ReferentialConstraint Property="Beds_number" ReferencedProperty="number"/>
+                </NavigationProperty>
+                <Property Name="Beds_number" Type="Edm.Guid"/>
+                <NavigationProperty Name="Clients" Type="CatalogService.Clients">
+                    <ReferentialConstraint Property="Clients_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="Clients_ID" Type="Edm.Guid"/>
+                <Property Name="dateSTART" Type="Edm.DateTimeOffset"/>
+                <Property Name="dateSTOP" Type="Edm.DateTimeOffset"/>
+            </EntityType>
+            <EntityType Name="Clients">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="FirstName" Type="Edm.String" MaxLength="25"/>
+                <Property Name="SecondName" Type="Edm.String" MaxLength="25"/>
+                <Property Name="PhoneNumber" Type="Edm.String" MaxLength="9"/>
+                <Property Name="email" Type="Edm.String" MaxLength="30"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

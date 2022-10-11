@@ -1,0 +1,5 @@
+<mvc:View controllerName="bksoft.frontend.controller.MainView" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <Switch id="themeSwitch" state="false" customTextOn="Dark theme" customTextOff="Light theme" change="toggleThemeChange" />
+    </Page>
+</mvc:View>
