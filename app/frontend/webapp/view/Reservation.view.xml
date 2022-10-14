@@ -1,11 +1,15 @@
 <mvc:View controllerName="bksoft.frontend.controller.Reservation" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" class="viewPadding">
-    <Page id="page">
+    <Page showNavButton="true" navButtonPress=".onNavBack">
         <l:VerticalLayout>
-            <u:Calendar id="calendar" select="handleCalendarSelect" intervalSelection="false" singleSelection="false" />
-            <Button press="handleRemoveSelection" text="Remove All Selected Dates" />
-            <List id="selectedDatesList" class="labelMarginLeft" noDataText="No Dates Selected" headerText="Selected Dates (yyyy-mm-dd)" items="{path: '/selectedDates'}">
-                <StandardListItem title="{Date}" />
-            </List>
+            <u:Calendar id="calendar" select="handleCalendarSelect" intervalSelection="true" weekNumberSelect="handleWeekNumberSelect" />
+            <l:HorizontalLayout>
+                <Label text="Selected From (yyyy-mm-dd):" class="labelMarginLeft" />
+                <Text id="selectedDateFrom" text="No Date Selected" class="labelMarginLeft" />
+            </l:HorizontalLayout>
+            <l:HorizontalLayout>
+                <Label text="Selected To (yyyy-mm-dd):" class="labelMarginLeft" />
+                <Text id="selectedDateTo" text="No Date Selected" class="labelMarginLeft" />
+            </l:HorizontalLayout>
         </l:VerticalLayout>
     </Page>
 </mvc:View>
