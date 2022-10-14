@@ -1,5 +1,10 @@
 <mvc:View controllerName="bksoft.frontend.controller.App" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
     <Shell>
-        <App id="app"></App>
+        <App id="app">
+            <Page id="page">
+                <Label text="  {i18n>changeThemeText}   " />
+                <Switch id="themeSwitch" state="false" customTextOn=" " customTextOff=" " change="toggleThemeChange" />
+            </Page>
+        </App>
     </Shell>
 </mvc:View>

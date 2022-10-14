@@ -14,9 +14,9 @@
                         <ImageContent src="../webapp/images/roomview.jpg" />
                     </TileContent>
                 </GenericTile>
-                <GenericTile header="{i18n>mkresTileHeader}" press=".onBooksPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout">
+                <GenericTile header="{i18n>mkresTileHeader}" press=".onResPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout">
                     <TileContent footer="{i18n>mkresTileFooter}">
-                        <ImageContent src="sap-icon://newspaper" />
+                        <ImageContent src="sap-icon://calendar" />
                     </TileContent>
                 </GenericTile>
             </items>

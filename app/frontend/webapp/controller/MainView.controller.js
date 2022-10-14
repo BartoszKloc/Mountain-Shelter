@@ -17,6 +17,11 @@ sap.ui.define([
                 } else {
                   sap.ui.getCore().applyTheme("sap_fiori_3");
                 }
-              },
+            },
+
+            onResPress: function(){
+              var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+              oRouter.navTo("Reservation");
+            }
         });
     });

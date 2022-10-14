@@ -104,6 +104,13 @@
           "target": [
             "TargetMainView"
           ]
+        },
+        {
+          "name": "Reservation",
+          "pattern": "Reservation",
+          "target": [
+            "TargetReservationView"
+          ]
         }
       ],
       "targets": {
@@ -113,6 +120,13 @@
           "clearControlAggregation": false,
           "viewId": "MainView",
           "viewName": "MainView"
+        },
+        "TargetReservationView": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Reservation",
+          "viewName": "Reservation"
         }
       }
     },
