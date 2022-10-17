@@ -111,6 +111,13 @@
           "target": [
             "TargetReservationView"
           ]
+        },
+        {
+          "name": "ClientsList",
+          "pattern": "ClientsList",
+          "target": [
+            "TargetClientsList"
+          ]
         }
       ],
       "targets": {
@@ -127,6 +134,13 @@
           "clearControlAggregation": false,
           "viewId": "Reservation",
           "viewName": "Reservation"
+        },
+        "TargetClientsList": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ClientsList",
+          "viewName": "ClientsList"
         }
       }
     },

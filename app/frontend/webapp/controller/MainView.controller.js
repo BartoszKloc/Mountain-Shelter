@@ -1,27 +1,31 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
+  "sap/ui/core/mvc/Controller"
 ],
-    /**
-     * @param {typeof sap.ui.core.mvc.Controller} Controller
-     */
-    function (Controller) {
-        "use strict";
+  /**
+   * @param {typeof sap.ui.core.mvc.Controller} Controller
+   */
+  function (Controller) {
+    "use strict";
 
-        return Controller.extend("bksoft.frontend.controller.MainView", {
-            onInit: function () {
+    return Controller.extend("bksoft.frontend.controller.MainView", {
+      onInit: function () {
 
-            },
-            toggleThemeChange: function () {
-                if (this.getView().byId("themeSwitch").getState()) {
-                  sap.ui.getCore().applyTheme("sap_fiori_3_dark");
-                } else {
-                  sap.ui.getCore().applyTheme("sap_fiori_3");
-                }
-            },
+      },
+      toggleThemeChange: function () {
+        if (this.getView().byId("themeSwitch").getState()) {
+          sap.ui.getCore().applyTheme("sap_fiori_3_dark");
+        } else {
+          sap.ui.getCore().applyTheme("sap_fiori_3");
+        }
+      },
 
-            onResPress: function(){
-              var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-              oRouter.navTo("Reservation");
-            }
-        });
+      onResPress: function () {
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        oRouter.navTo("Reservation");
+      },
+      onClientsPress: function () {
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        oRouter.navTo("ClientsList");
+      }
     });
+  });

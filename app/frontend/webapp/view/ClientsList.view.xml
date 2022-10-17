@@ -1,0 +1,5 @@
+<mvc:View controllerName="bksoft.frontend.controller.ClientsList" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" class="viewPadding">
+    <Page showNavButton="true" navButtonPress=".onNavBack">
+        <Label text="tu beda klienty" />
+    </Page>
+</mvc:View>
