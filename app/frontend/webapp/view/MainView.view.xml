@@ -21,7 +21,7 @@
                 </GenericTile>
                 <GenericTile header="{i18n>clientsTileHeader}" press=".onClientsPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout">
                     <TileContent footer="{i18n>clientsTileFooter}">
-                        <ImageContent src="sap-icon://calendar" />
+                        <ImageContent src="sap-icon://account" />
                     </TileContent>
                 </GenericTile>
             </items>

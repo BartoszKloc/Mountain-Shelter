@@ -1,5 +1,24 @@
 <mvc:View controllerName="bksoft.frontend.controller.ClientsList" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" class="viewPadding">
     <Page showNavButton="true" navButtonPress=".onNavBack">
-        <Label text="tu beda klienty" />
+        <FlexBox alignItems="Center" justifyContent="Center">
+            <List headerText="Input" width="40em">
+                <InputListItem label="Enter First Name:  ">
+                    <Input placeholder="FirstName" value=" " width="20em" />
+                </InputListItem>
+                <InputListItem label="Enter Second Name: ">
+                    <Input placeholder="SecondName" value=" " width="20em" />
+                </InputListItem>
+                <InputListItem label="Enter phone number:">
+                    <Input placeholder="Number" value="" type="Number" width="20em" />
+                </InputListItem>
+                <InputListItem label="Enter email:       ">
+                    <Input placeholder="email" value=" " width="20em" />
+                </InputListItem>
+
+            </List>
+        </FlexBox>
+        <FlexBox alignItems="Center" justifyContent="Center">
+            <Button text="Submit" press=".onSubmit" margin="30px" />
+        </FlexBox>
     </Page>
 </mvc:View>
