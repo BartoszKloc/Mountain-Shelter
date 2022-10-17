@@ -18,7 +18,41 @@
             </List>
         </FlexBox>
         <FlexBox alignItems="Center" justifyContent="Center">
-            <Button text="Submit" press=".onShowHello" margin="30px" />
+            <Button text="Submit" press=".onSubmit" margin="30px" />
+        </FlexBox>
+        <FlexBox alignItems="Center" justifyContent="Center">
+            <Table id="table" width="auto" items="{
+                    path: '/Clients'
+                }" growing="true" growingScrollToLoad="true" updateFinished=".onUpdateFinished">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <SearchField id="searchField" tooltip="d0pa" search=".onSearch">
+                            <layoutData>
+                                <OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow" />
+                            </layoutData>
+                        </SearchField>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column id="FnameColumn" />
+                    <Column id="SnameColumn" />
+                    <Column id="phoneColumn" />
+                    <Column id="emailColumn" />
+                </columns>
+
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <ObjectIdentifier title="{FirstName}" />
+                            <ObjectIdentifier title="{SecondName}" />
+                            <ObjectIdentifier title="{PhoneNumber}" />
+                            <ObjectIdentifier title="{email}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
         </FlexBox>
     </Page>
 </mvc:View>
