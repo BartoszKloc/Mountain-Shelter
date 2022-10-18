@@ -22,12 +22,12 @@
         </FlexBox>
         <FlexBox alignItems="Center" justifyContent="Center">
             <Table id="table" width="auto" items="{
-                    path: '/Clients'
+                    path: 'clientsList>/value'
                 }" growing="true" growingScrollToLoad="true" updateFinished=".onUpdateFinished">
                 <headerToolbar>
                     <OverflowToolbar>
                         <ToolbarSpacer />
-                        <SearchField id="searchField" tooltip="d0pa" search=".onSearch">
+                        <SearchField id="searchField" search=".onSearch">
                             <layoutData>
                                 <OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow" />
                             </layoutData>
@@ -45,10 +45,10 @@
                 <items>
                     <ColumnListItem>
                         <cells>
-                            <ObjectIdentifier title="{FirstName}" />
-                            <ObjectIdentifier title="{SecondName}" />
-                            <ObjectIdentifier title="{PhoneNumber}" />
-                            <ObjectIdentifier title="{email}" />
+                            <ObjectIdentifier title="{clientsList>FirstName}" />
+                            <ObjectIdentifier title="{clientsList>SecondName}" />
+                            <ObjectIdentifier title="{clientsList>PhoneNumber}" />
+                            <ObjectIdentifier title="{clientsList>email}" />
                         </cells>
                     </ColumnListItem>
                 </items>
