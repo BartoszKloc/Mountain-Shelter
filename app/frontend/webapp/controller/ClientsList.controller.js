@@ -7,7 +7,6 @@ sap.ui.define([
     "use strict";
     return Controller.extend("bksoft.frontend.controller.ClientsList", {
         onInit: function () {
-            var dataValue;
             // set data model on view
             var oDataInput = {
                 client: {
@@ -43,14 +42,22 @@ sap.ui.define([
             var sClientSecondName = this.getView().getModel().getProperty("/client/secondName");
             var sClientPhoneNum = this.getView().getModel().getProperty("/client/phoneNum");
             var sClientEmail = this.getView().getModel().getProperty("/client/email");
-            // show message
 
-            if (sClientFirstName != "") {
+            if ((sClientFirstName != "") && (sClientSecondName != "") && (sClientPhoneNum != "") && (sClientEmail != "")) {
                 MessageToast.show("client added");
-                console.log(sClientFirstName);
-                console.log(sClientSecondName);
-                console.log(sClientPhoneNum);
-                console.log(sClientEmail);
+                let oClientData = {
+                    FirstName: sClientFirstName,
+                    SecondName: sClientSecondName,
+                    PhoneNumber: sClientPhoneNum,
+                    email: sClientEmail
+                }
+
+                $.ajax({
+                    type: "POST",
+                    data: JSON.stringify(oClientData),
+                    url: "/catalog/Clients",
+                    contentType: "application/json"
+                });
             }
             else MessageToast.show("Empty field!");
         },
