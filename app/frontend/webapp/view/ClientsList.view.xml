@@ -21,9 +21,9 @@
             <Button text="Submit" press=".onSubmit" margin="30px" />
         </FlexBox>
         <FlexBox alignItems="Center" justifyContent="Center">
-            <Table id="table" width="auto" items="{
-                    path: 'clientsList>/value'
-                }" growing="true" growingScrollToLoad="true" updateFinished=".onUpdateFinished">
+            <Table id="ClientsTable" items="{
+                path: 'clientsList>/value'
+            }">
                 <headerToolbar>
                     <OverflowToolbar>
                         <ToolbarSpacer />
@@ -34,22 +34,26 @@
                         </SearchField>
                     </OverflowToolbar>
                 </headerToolbar>
-
                 <columns>
-                    <Column id="FnameColumn" />
-                    <Column id="SnameColumn" />
-                    <Column id="phoneColumn" />
-                    <Column id="emailColumn" />
+                    <Column>
+                        <Label text="{i18n>tName}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>tPhone}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>tEmail}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>tActions}" />
+                    </Column>
                 </columns>
-
                 <items>
-                    <ColumnListItem>
-                        <cells>
-                            <ObjectIdentifier title="{clientsList>FirstName}" />
-                            <ObjectIdentifier title="{clientsList>SecondName}" />
-                            <ObjectIdentifier title="{clientsList>PhoneNumber}" />
-                            <ObjectIdentifier title="{clientsList>email}" />
-                        </cells>
+                    <ColumnListItem id="cli">
+                        <Text text="{clientsList>FirstName} {clientsList>SecondName}" />
+                        <Text text="{clientsList>PhoneNumber}" />
+                        <Text text="{clientsList>email}" />
+                        <Button text="Delete" press=".deleteClient" />
                     </ColumnListItem>
                 </items>
             </Table>

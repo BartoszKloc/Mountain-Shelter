@@ -2,8 +2,10 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/core/routing/History"
-], function (Controller, MessageToast, JSONModel, History) {
+    "sap/ui/core/routing/History",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
+], function (Controller, MessageToast, JSONModel, History, Filter, FilterOperator) {
     "use strict";
     return Controller.extend("bksoft.frontend.controller.ClientsList", {
         onInit: function () {
@@ -71,6 +73,21 @@ sap.ui.define([
                 var oRouter = this.getOwnerComponent().getRouter();
                 oRouter.navTo("MainView", {}, true);
             }
-        }
+        },
+        // deleteClient: function (oEvent) {
+        // },
+        // onSearch: function (oEvent) {
+        //     // build filter array
+        //     var aFilter = [];
+        //     var sQuery = oEvent.getParameter("query");
+        //     if (sQuery) {
+        //         aFilter.push(new Filter("email", FilterOperator.Contains, sQuery));
+        //     }
+
+        //     // filter binding
+        //     var oList = this.byId("ClientsTable");
+        //     var oBinding = oList.getBinding("email");
+        //     oBinding.filter(aFilter);
+        // }
     });
 });
