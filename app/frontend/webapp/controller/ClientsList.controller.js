@@ -112,6 +112,14 @@ sap.ui.define([
             this.getView().addDependent(this.oResizableDialog);
 
             this.oResizableDialog.open();
+        },
+        handleOpen: function () {
+            var oDialog = this.getView().byId("inputDialog");
+            oDialog.open();
+        },
+        onClose: function () {
+            var oDialog = this.getView().byId("inputDialog");
+            oDialog.close();
         }
     });
 });

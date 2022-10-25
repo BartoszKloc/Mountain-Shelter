@@ -1,8 +1,39 @@
-<mvc:View controllerName="bksoft.frontend.controller.ClientsList" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
+<mvc:View controllerName="bksoft.frontend.controller.ClientsList" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout">
     <Page showNavButton="true" navButtonPress=".onNavBack">
-        <FlexBox alignItems="Center" justifyContent="Center">
-            <Button text="Submit" press=".onSubmit" margin="30px" />
-        </FlexBox>
+        <tnt:ToolHeader>
+            <Button icon="sap-icon://menu2" type="Transparent">
+                <layoutData>
+                    <OverflowToolbarLayoutData priority="NeverOverflow" />
+                </layoutData>
+            </Button>
+            <Button text="Add client" type="Transparent" press=".handleOpen" ariaHasPopup="Dialog">
+                <layoutData>
+                    <OverflowToolbarLayoutData priority="Low" />
+                </layoutData>
+            </Button>
+        </tnt:ToolHeader>
+        <l:VerticalLayout class="sapUiContentPadding" width="100%">
+            <Dialog id="inputDialog" resizable="true" draggable="true" headerText="Register Form" title="{i18n>InputHeader}">
+                <FlexBox alignItems="Center" justifyContent="Center">
+                    <l:VerticalLayout>
+                        <Label for="firstname" showColon="true" text="{i18n>eFN}" />
+                        <Input id="firstname" placeholder="Enter first name" />
+                        <Label for="secondname" showColon="true" text="{i18n>eSN}" />
+                        <Input id="secondname" placeholder="Enter second name" />
+                        <Label for="phone" showColon="true" text="{i18n>ePhNum}" />
+                        <Input id="phone" placeholder="Enter phone number" />
+                        <Label for="email" showColon="true" text="{i18n>eEmail}" />
+                        <Input id="email" placeholder="Enter email" />
+                    </l:VerticalLayout>
+                </FlexBox>
+                <FlexBox alignItems="Center" justifyContent="Center">
+                    <Button design="Emphasized" press=".onSubmit" text="Submit"
+                        margin="20px" />
+                    <Button design="Emphasized" press=".onClose" text="Close"
+                        margin="20px" />
+                </FlexBox>
+            </Dialog>
+        </l:VerticalLayout>
         <FlexBox alignItems="Center" justifyContent="Center">
             <Table id="ClientsTable" items="{
                 path: '/Clients'
