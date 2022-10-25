@@ -1,28 +1,11 @@
 <mvc:View controllerName="bksoft.frontend.controller.ClientsList" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
     <Page showNavButton="true" navButtonPress=".onNavBack">
         <FlexBox alignItems="Center" justifyContent="Center">
-            <List headerText="{i18n>InputHeader}" width="40em">
-                <InputListItem label="{i18n>eFN}">
-                    <Input value="{/client/firstName}" width="20em" />
-                </InputListItem>
-                <InputListItem label="{i18n>eSN}">
-                    <Input value="{/client/secondName}" width="20em" />
-                </InputListItem>
-                <InputListItem label="{i18n>ePhNum}">
-                    <Input value="{/client/phoneNum}" type="Number" width="20em" />
-                </InputListItem>
-                <InputListItem label="{i18n>eEmail}">
-                    <Input value="{/client/email}" width="20em" />
-                </InputListItem>
-
-            </List>
-        </FlexBox>
-        <FlexBox alignItems="Center" justifyContent="Center">
             <Button text="Submit" press=".onSubmit" margin="30px" />
         </FlexBox>
         <FlexBox alignItems="Center" justifyContent="Center">
             <Table id="ClientsTable" items="{
-                path: 'clientsList>/value'
+                path: '/Clients'
             }">
                 <headerToolbar>
                     <OverflowToolbar>
@@ -50,10 +33,10 @@
                 </columns>
                 <items>
                     <ColumnListItem id="cli">
-                        <Text text="{clientsList>FirstName} {clientsList>SecondName}" />
-                        <Text text="{clientsList>PhoneNumber}" />
-                        <Text text="{clientsList>email}" />
-                        <Button text="Delete" press=".deleteClient" />
+                        <Text text="{FirstName} {SecondName}" />
+                        <Text text="{PhoneNumber}" />
+                        <Text text="{email}" />
+                        <Button text="Delete" press=".deleteClient" ariaHasPopup="Dialog" />
                     </ColumnListItem>
                 </items>
             </Table>
