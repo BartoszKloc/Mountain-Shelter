@@ -28,9 +28,9 @@
                 </FlexBox>
                 <FlexBox alignItems="Center" justifyContent="Center">
                     <Button design="Emphasized" press=".onSubmit" text="Submit"
-                        margin="20px" />
+                        class="sapUiMediumMargin" />
                     <Button design="Emphasized" press=".onClose" text="Close"
-                        margin="20px" />
+                        class="sapUiMediumMargin" />
                 </FlexBox>
             </Dialog>
         </l:VerticalLayout>

@@ -43,10 +43,10 @@ sap.ui.define([
 
         },
         onSubmit: function () {
-            // var sClientFirstName = this.getView().getModel().getProperty("/client/firstName");
-            // var sClientSecondName = this.getView().getModel().getProperty("/client/secondName");
-            // var sClientPhoneNum = this.getView().getModel().getProperty("/client/phoneNum");
-            // var sClientEmail = this.getView().getModel().getProperty("/client/email");
+            var sClientFirstName = this.byId("firstname").getValue();
+            var sClientSecondName = this.byId("secondname").getValue();
+            var sClientPhoneNum = this.byId("phone").getValue();
+            var sClientEmail = this.byId("email").getValue();
 
             if ((sClientFirstName != "") && (sClientSecondName != "") && (sClientPhoneNum != "") && (sClientEmail != "")) {
                 MessageToast.show("client added");
@@ -91,7 +91,7 @@ sap.ui.define([
                 content:
                     new Text({
                         text: dialogText,
-                        class: "sapUiSmallMargin"
+                        class: "sapUiMediumMargin"
                     }),
                 buttons: [
                     new Button({
