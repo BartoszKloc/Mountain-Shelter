@@ -4,7 +4,7 @@ This is my internship project in Capgemini Software Solutions Centre, NSC SAP Te
 ## Installation
 Make sure you have NPM installed. You will also have to install CLIs: CDS and HANA-CLI
 
-``` npm i -g @sap/cds ```
+``` npm i -g @sap/cds-dk ```
 
 ``` npm i -g hana-cli ```
 
