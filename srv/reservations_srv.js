@@ -2,11 +2,6 @@ const cds = require("@sap/cds")
 const { Clients } = cds.entities("app.interactions")
 
 module.exports = srv => {
-    // srv.on("READ", "Clients", async (req, res) => {
-    //     const { SELECT } = cds.ql(req);
-    //     const result = await SELECT.from(Clients).where({ SecondName: "Stosik" });
-    //     return result;
-    // });
     srv.on("CREATE", "Clients", async (req, res) => {
         let returnData = await cds.transaction(req).run(INSERT.into(Clients).entries({
             FirstName: req.data.FirstName,
@@ -28,5 +23,9 @@ module.exports = srv => {
         });
         console.log("Before End", returnData);
         return returnData;
-    })
-};
+    }),
+        srv.on("delete", async (req, res) => {
+            const result = await DELETE.from(Clients).where({ ID: req.data.msg });
+            return result;
+        })
+}; 

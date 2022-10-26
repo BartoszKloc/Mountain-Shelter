@@ -5,4 +5,5 @@ service CatalogService {
     entity Beds         as projection on interactions.Beds;
     entity Reservations as projection on interactions.Reservations;
     entity Clients      as projection on interactions.Clients;
+    function delete(msg : String) returns String;
 }

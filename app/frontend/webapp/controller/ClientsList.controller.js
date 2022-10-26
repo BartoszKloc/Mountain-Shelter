@@ -12,35 +12,6 @@ sap.ui.define([
     "use strict";
     return Controller.extend("bksoft.frontend.controller.ClientsList", {
         onInit: function () {
-            // set data model on view
-            // var oDataInput = {
-            //     client: {
-            //         firstName: "",
-            //         secondName: "",
-            //         phoneNum: "",
-            //         email: ""
-            //     }
-            // };
-            // var oModel = new JSONModel(oDataInput);
-            // this.getView().setModel(oModel);
-
-            // const View = this.getView();
-
-            // async function test2(View) {
-            //     const res = await $.ajax({
-            //         method: "GET",
-            //         url: "/catalog/Clients",
-            //         dataType: "JSON"
-            //     }).done((data) => {
-            //         console.log(data.value)
-            //         return data.value;
-            //     })
-            //     var oModelClients = new JSONModel;
-            //     oModelClients.setData(res);
-            //     View.setModel(oModelClients, 'clientsList');
-            // }
-            // test2(View);
-
         },
         onSubmit: function () {
             var sClientFirstName = this.byId("firstname").getValue();
@@ -96,8 +67,11 @@ sap.ui.define([
                 buttons: [
                     new Button({
                         text: "{i18n>yes}",
-                        press: function () {
-                            alert("deleting user no. " + oID);
+                        //function for deleting user:
+                        press: async function () {
+                            const URLstring = `/catalog/delete(msg='` + oID + `')`
+                            var resHeaders = await fetch(URLstring);
+                            resHeaders;
                             this.oResizableDialog.close();
                         }.bind(this)
                     }), new Button({
@@ -120,6 +94,20 @@ sap.ui.define([
         onClose: function () {
             var oDialog = this.getView().byId("inputDialog");
             oDialog.close();
+        },
+        onSearch: function (oEvent) {
+
+            // build filter array
+            var aFilter = [];
+            var sQuery = oEvent.getParameter("query");
+            if (sQuery) {
+                aFilter.push(new Filter("email", FilterOperator.Contains, sQuery));
+            }
+
+            // filter binding
+            var oList = this.byId("ClientsTable");
+            var oBinding = oList.getBinding("email");
+            oBinding.filter(aFilter);
         }
     });
 });
