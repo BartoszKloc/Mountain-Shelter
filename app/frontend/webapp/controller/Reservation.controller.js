@@ -99,7 +99,10 @@ sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/unified/DateRange', 'sap/m/
                 const oID = oClient.ID;
                 const oFirstName = oClient.FirstName;
                 const oSecondName = oClient.SecondName;
+                const oSelectedClient = this.byId("selectedClientL");
+
                 MessageToast.show("Selected " + oFirstName + " " + oSecondName);
+                oSelectedClient.setText(oFirstName + " " + oSecondName);
 
                 const oDialog = this.getView().byId("clientsListDialog");
                 oDialog.close();

@@ -1,17 +1,32 @@
 <mvc:View controllerName="bksoft.frontend.controller.Reservation" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" class="viewPadding">
     <Page showNavButton="true" navButtonPress=".onNavBack">
-        <l:VerticalLayout>
-            <u:Calendar id="calendar" select="handleCalendarSelect" intervalSelection="true" weekNumberSelect="handleWeekNumberSelect" />
-            <l:HorizontalLayout>
-                <Label text="Selected From (yyyy-mm-dd):" class="labelMarginLeft" />
-                <Text id="selectedDateFrom" text="No Date Selected" class="labelMarginLeft" />
-            </l:HorizontalLayout>
-            <l:HorizontalLayout>
-                <Label text="Selected To (yyyy-mm-dd):" class="labelMarginLeft" />
-                <Text id="selectedDateTo" text="No Date Selected" class="labelMarginLeft" />
-            </l:HorizontalLayout>
-        </l:VerticalLayout>
-        <Button text="select client" press=".onShowClientsList" ariaHasPopup="Dialog" />
+        <FlexBox alignItems="Center" justifyContent="Center">
+            <List headerText="{i18n>newResHeader}" width="40em">
+                <CustomListItem>
+                    <FlexBox alignItems="Center" justifyContent="Center">
+                        <Text id="selectedClientT" text="{i18n>SelectClientT}" class="sapUiSmallMargin" width="15em" />
+                        <Label id="selectedClientL" text="{i18n>SelectClientL}" class="sapUiSmallMargin" width="15em" />
+                        <Button text="select client" press=".onShowClientsList" ariaHasPopup="Dialog" class="sapUiTinyMargin" />
+                    </FlexBox>
+                </CustomListItem>
+                <CustomListItem>
+                    <FlexBox alignItems="Center" justifyContent="Center">
+                        <Text id="selectedDateFromT" text="{i18n>SelectDateFT}" class="sapUiSmallMarginTop sapUiSmallMarginBottom" width="20em" />
+                        <Label id="selectedDateFrom" text="{i18n>SelectDateFL}" width="20em" />
+                    </FlexBox>
+                </CustomListItem>
+                <CustomListItem>
+                    <FlexBox alignItems="Center" justifyContent="Center">
+                        <Text id="selectedDateToT" text="{i18n>SelectDateTT}" class="sapUiSmallMarginTop sapUiSmallMarginBottom" width="20em" />
+                        <Label id="selectedDateTo" text="{i18n>SelectDateTL}" width="20em" />
+                    </FlexBox>
+                </CustomListItem>
+
+            </List>
+            <u:Calendar id="calendar" select="handleCalendarSelect" intervalSelection="true" weekNumberSelect="handleWeekNumberSelect" class="sapUiTinyMargin" />
+        </FlexBox>
+
+
         <Dialog id="clientsListDialog" resizable="false" draggable="false" headerText="Register Form" title="{i18n>SelectClientHeader}" width="60em">
             <FlexBox alignItems="Center" justifyContent="Center">
                 <l:VerticalLayout>

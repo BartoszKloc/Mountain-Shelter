@@ -6,7 +6,7 @@
                     <OverflowToolbarLayoutData priority="NeverOverflow" />
                 </layoutData>
             </Button>
-            <Button text="Add client" type="Transparent" press=".handleOpen" ariaHasPopup="Dialog">
+            <Button text="{i18n>addClientBtn}" type="Transparent" press=".handleOpen" ariaHasPopup="Dialog">
                 <layoutData>
                     <OverflowToolbarLayoutData priority="Low" />
                 </layoutData>
