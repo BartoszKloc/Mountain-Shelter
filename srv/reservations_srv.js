@@ -1,5 +1,6 @@
-const cds = require("@sap/cds")
-const { Clients } = cds.entities("app.interactions")
+const cds = require("@sap/cds");
+const { Clients } = cds.entities("app.interactions");
+const { Reservations } = cds.entities("app.interactions");
 
 module.exports = srv => {
     srv.on("CREATE", "Clients", async (req, res) => {
@@ -26,6 +27,10 @@ module.exports = srv => {
     }),
         srv.on("delete", async (req, res) => {
             const result = await DELETE.from(Clients).where({ ID: req.data.msg });
+            return result;
+        }),
+        srv.on("getVacancy", async (req, res) => {
+            const result = await SELECT.from(Reservations).where({ dateSTART: req.data.dateStart });
             return result;
         })
 }; 
