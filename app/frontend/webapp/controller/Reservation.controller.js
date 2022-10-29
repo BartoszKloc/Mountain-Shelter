@@ -83,6 +83,26 @@ sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/unified/DateRange', 'sap/m/
                     var oRouter = this.getOwnerComponent().getRouter();
                     oRouter.navTo("MainView", {}, true);
                 }
+            },
+
+            //Select client Dialog:
+            onShowClientsList: function () {
+                const oDialog = this.getView().byId("clientsListDialog");
+                oDialog.open();
+            },
+            onCloseDialog: function () {
+                const oDialog = this.getView().byId("clientsListDialog");
+                oDialog.close();
+            },
+            onClientSelect: function (oEvent) {
+                const oClient = oEvent.getSource().getBindingContext().getObject();
+                const oID = oClient.ID;
+                const oFirstName = oClient.FirstName;
+                const oSecondName = oClient.SecondName;
+                MessageToast.show("Selected " + oFirstName + " " + oSecondName);
+
+                const oDialog = this.getView().byId("clientsListDialog");
+                oDialog.close();
             }
         });
 

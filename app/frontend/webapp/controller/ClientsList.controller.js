@@ -72,6 +72,7 @@ sap.ui.define([
                             const URLstring = `/catalog/delete(msg='` + oID + `')`
                             var resHeaders = await fetch(URLstring);
                             resHeaders;
+                            MessageToast.show("client has been deleted");
                             this.oResizableDialog.close();
                         }.bind(this)
                     }), new Button({
@@ -108,6 +109,10 @@ sap.ui.define([
             var oList = this.byId("ClientsTable");
             var oBinding = oList.getBinding("email");
             oBinding.filter(aFilter);
-        }
+        },
+        onBeforeRendering: async function () {
+            var noDataText = await this.getView().getModel("i18n").getResourceBundle().getText("noDataShow")
+            await this.byId("ClientsTable").setNoDataText(noDataText)
+        },
     });
 });

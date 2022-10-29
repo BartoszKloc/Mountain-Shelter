@@ -11,5 +11,50 @@
                 <Text id="selectedDateTo" text="No Date Selected" class="labelMarginLeft" />
             </l:HorizontalLayout>
         </l:VerticalLayout>
+        <Button text="select client" press=".onShowClientsList" ariaHasPopup="Dialog" />
+        <Dialog id="clientsListDialog" resizable="false" draggable="false" headerText="Register Form" title="{i18n>SelectClientHeader}" width="60em">
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <l:VerticalLayout>
+                    <Table id="ClientsTable" items="{
+                            path: '/Clients'
+                        }" width="60em" type="Navigation"
+                        press="onPress">
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <ToolbarSpacer />
+                                <SearchField id="searchField" search=".onSearch">
+                                    <layoutData>
+                                        <OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow" />
+                                    </layoutData>
+                                </SearchField>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column>
+                                <Label text="{i18n>tName}" />
+                            </Column>
+                            <Column>
+                                <Label text="{i18n>tPhone}" />
+                            </Column>
+                            <Column>
+                                <Label text="{i18n>tEmail}" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem id="cli" type="Navigation" press="onClientSelect">
+                                <Text text="{FirstName} {SecondName}" />
+                                <Text text="{PhoneNumber}" />
+                                <Text text="{email}" />
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </l:VerticalLayout>
+            </FlexBox>
+            <beginButton>
+                <Button
+                    text="{i18n>dialogCloseButtonText}"
+                    press=".onCloseDialog" />
+            </beginButton>
+        </Dialog>
     </Page>
 </mvc:View>
