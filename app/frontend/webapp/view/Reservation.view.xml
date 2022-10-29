@@ -71,5 +71,6 @@
                     press=".onCloseDialog" />
             </beginButton>
         </Dialog>
+        <Button text="test" press=".getDataTest" />
     </Page>
 </mvc:View>

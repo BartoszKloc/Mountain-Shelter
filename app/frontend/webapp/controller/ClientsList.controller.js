@@ -109,10 +109,6 @@ sap.ui.define([
             var oList = this.byId("ClientsTable");
             var oBinding = oList.getBinding("email");
             oBinding.filter(aFilter);
-        },
-        onBeforeRendering: async function () {
-            var noDataText = await this.getView().getModel("i18n").getResourceBundle().getText("noDataShow")
-            await this.byId("ClientsTable").setNoDataText(noDataText)
-        },
+        }
     });
 });

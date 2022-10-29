@@ -3,6 +3,13 @@ sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/unified/DateRange', 'sap/m/
         "use strict";
 
         var CalendarType = coreLibrary.CalendarType;
+        let ReservationData = {
+            clientID: " ",
+            clientFN: " ",
+            clientSN: " ",
+            startDate: " ",
+            endDate: " "
+        }
 
         return Controller.extend("bksoft.frontend.controller.Reservation", {
             oFormatYyyymmdd: null,
@@ -25,12 +32,14 @@ sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/unified/DateRange', 'sap/m/
                     oDate = oSelectedDates.getStartDate();
                     if (oDate) {
                         oSelectedDateFrom.setText(this.oFormatYyyymmdd.format(oDate));
+                        ReservationData.startDate = oDate;
                     } else {
                         oSelectedDateTo.setText("No Date Selected");
                     }
                     oDate = oSelectedDates.getEndDate();
                     if (oDate) {
                         oSelectedDateTo.setText(this.oFormatYyyymmdd.format(oDate));
+                        ReservationData.endDate = oDate;
                     } else {
                         oSelectedDateTo.setText("No Date Selected");
                     }
@@ -97,8 +106,11 @@ sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/unified/DateRange', 'sap/m/
             onClientSelect: function (oEvent) {
                 const oClient = oEvent.getSource().getBindingContext().getObject();
                 const oID = oClient.ID;
+                ReservationData.clientID = oID;
                 const oFirstName = oClient.FirstName;
+                ReservationData.clientFN = oFirstName;
                 const oSecondName = oClient.SecondName;
+                ReservationData.clientSN = oSecondName;
                 const oSelectedClient = this.byId("selectedClientL");
 
                 MessageToast.show("Selected " + oFirstName + " " + oSecondName);
@@ -106,6 +118,17 @@ sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/unified/DateRange', 'sap/m/
 
                 const oDialog = this.getView().byId("clientsListDialog");
                 oDialog.close();
+            },
+            getDataTest: function () {
+                if (ReservationData.clientID !== " " && ReservationData.startDate !== " " && ReservationData.endDate !== " ") {
+                    alert(ReservationData.clientID);
+                    console.log(ReservationData.clientID);
+                    console.log(ReservationData.clientFN);
+                    console.log(ReservationData.clientSN);
+                    console.log(ReservationData.startDate);
+                    console.log(ReservationData.endDate);
+                }
+                else MessageToast.show("Empty field!")
             }
         });
 
