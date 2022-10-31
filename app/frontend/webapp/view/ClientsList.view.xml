@@ -1,76 +1,74 @@
 <mvc:View controllerName="bksoft.frontend.controller.ClientsList" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout">
-    <Page showNavButton="true" navButtonPress=".onNavBack">
-        <tnt:ToolHeader>
-            <Button icon="sap-icon://menu2" type="Transparent">
-                <layoutData>
-                    <OverflowToolbarLayoutData priority="NeverOverflow" />
-                </layoutData>
-            </Button>
-            <Button text="{i18n>addClientBtn}" type="Transparent" press=".handleOpen" ariaHasPopup="Dialog">
-                <layoutData>
-                    <OverflowToolbarLayoutData priority="Low" />
-                </layoutData>
-            </Button>
-        </tnt:ToolHeader>
-        <l:VerticalLayout class="sapUiContentPadding" width="100%">
-            <Dialog id="inputDialog" resizable="true" draggable="true" headerText="Register Form" title="{i18n>InputHeader}">
-                <FlexBox alignItems="Center" justifyContent="Center">
-                    <l:VerticalLayout>
-                        <Label for="firstname" showColon="true" text="{i18n>eFN}" />
-                        <Input id="firstname" placeholder="Enter first name" />
-                        <Label for="secondname" showColon="true" text="{i18n>eSN}" />
-                        <Input id="secondname" placeholder="Enter second name" />
-                        <Label for="phone" showColon="true" text="{i18n>ePhNum}" />
-                        <Input id="phone" placeholder="Enter phone number" />
-                        <Label for="email" showColon="true" text="{i18n>eEmail}" />
-                        <Input id="email" placeholder="Enter email" />
-                    </l:VerticalLayout>
-                </FlexBox>
-                <FlexBox alignItems="Center" justifyContent="Center">
-                    <Button design="Emphasized" press=".onSubmit" text="Submit"
-                        class="sapUiMediumMargin" />
-                    <Button design="Emphasized" press=".onClose" text="Close"
-                        class="sapUiMediumMargin" />
-                </FlexBox>
-            </Dialog>
-        </l:VerticalLayout>
-        <FlexBox alignItems="Center" justifyContent="Center">
-            <Table id="ClientsTable" items="{
+    <tnt:ToolHeader>
+        <Button icon="sap-icon://home" type="Transparent" press=".navHome">
+            <layoutData>
+                <OverflowToolbarLayoutData priority="NeverOverflow" />
+            </layoutData>
+        </Button>
+        <Button text="{i18n>addClientBtn}" type="Transparent" press=".handleOpen" ariaHasPopup="Dialog">
+            <layoutData>
+                <OverflowToolbarLayoutData priority="Low" />
+            </layoutData>
+        </Button>
+    </tnt:ToolHeader>
+    <l:VerticalLayout class="sapUiContentPadding" width="100%">
+        <Dialog id="inputDialog" resizable="true" draggable="true" headerText="Register Form" title="{i18n>InputHeader}">
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <l:VerticalLayout>
+                    <Label for="firstname" showColon="true" text="{i18n>eFN}" />
+                    <Input id="firstname" placeholder="Enter first name" />
+                    <Label for="secondname" showColon="true" text="{i18n>eSN}" />
+                    <Input id="secondname" placeholder="Enter second name" />
+                    <Label for="phone" showColon="true" text="{i18n>ePhNum}" />
+                    <Input id="phone" placeholder="Enter phone number" />
+                    <Label for="email" showColon="true" text="{i18n>eEmail}" />
+                    <Input id="email" placeholder="Enter email" />
+                </l:VerticalLayout>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <Button design="Emphasized" press=".onSubmit" text="Submit"
+                    class="sapUiMediumMargin" />
+                <Button design="Emphasized" press=".onClose" text="Close"
+                    class="sapUiMediumMargin" />
+            </FlexBox>
+        </Dialog>
+    </l:VerticalLayout>
+    <FlexBox alignItems="Center" justifyContent="Center">
+        <Table id="ClientsTable" items="{
                 path: '/Clients'
             }">
-                <headerToolbar>
-                    <OverflowToolbar>
-                        <ToolbarSpacer />
-                        <SearchField id="searchField" search=".onSearch">
-                            <layoutData>
-                                <OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow" />
-                            </layoutData>
-                        </SearchField>
-                    </OverflowToolbar>
-                </headerToolbar>
-                <columns>
-                    <Column>
-                        <Label text="{i18n>tName}" />
-                    </Column>
-                    <Column>
-                        <Label text="{i18n>tPhone}" />
-                    </Column>
-                    <Column>
-                        <Label text="{i18n>tEmail}" />
-                    </Column>
-                    <Column>
-                        <Label text="{i18n>tActions}" />
-                    </Column>
-                </columns>
-                <items>
-                    <ColumnListItem id="cli">
-                        <Text text="{FirstName} {SecondName}" />
-                        <Text text="{PhoneNumber}" />
-                        <Text text="{email}" />
-                        <Button text="Delete" press=".deleteClient" ariaHasPopup="Dialog" />
-                    </ColumnListItem>
-                </items>
-            </Table>
-        </FlexBox>
-    </Page>
+            <headerToolbar>
+                <OverflowToolbar>
+                    <ToolbarSpacer />
+                    <SearchField id="searchField" search=".onSearch">
+                        <layoutData>
+                            <OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow" />
+                        </layoutData>
+                    </SearchField>
+                </OverflowToolbar>
+            </headerToolbar>
+            <columns>
+                <Column>
+                    <Label text="{i18n>tName}" />
+                </Column>
+                <Column>
+                    <Label text="{i18n>tPhone}" />
+                </Column>
+                <Column>
+                    <Label text="{i18n>tEmail}" />
+                </Column>
+                <Column>
+                    <Label text="{i18n>tActions}" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem id="cli">
+                    <Text text="{FirstName} {SecondName}" />
+                    <Text text="{PhoneNumber}" />
+                    <Text text="{email}" />
+                    <Button text="Delete" press=".deleteClient" ariaHasPopup="Dialog" />
+                </ColumnListItem>
+            </items>
+        </Table>
+    </FlexBox>
 </mvc:View>

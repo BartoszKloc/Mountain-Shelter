@@ -37,16 +37,9 @@ sap.ui.define([
             }
             else MessageToast.show("Empty field!");
         },
-        onNavBack: function () {
-            var oHistory = History.getInstance();
-            var sPreviousHash = oHistory.getPreviousHash();
-
-            if (sPreviousHash !== undefined) {
-                window.history.go(-1);
-            } else {
-                var oRouter = this.getOwnerComponent().getRouter();
-                oRouter.navTo("MainView", {}, true);
-            }
+        navHome: function () {
+            const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("RouteMainView");
         },
         deleteClient: function (oEvent) {
             var oClient = oEvent.getSource().getBindingContext().getObject();

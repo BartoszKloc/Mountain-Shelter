@@ -1,76 +1,91 @@
-<mvc:View controllerName="bksoft.frontend.controller.Reservation" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" class="viewPadding">
-    <Page showNavButton="true" navButtonPress=".onNavBack">
+<mvc:View controllerName="bksoft.frontend.controller.Reservation" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" class="viewPadding">
+    <tnt:ToolHeader>
+        <Button icon="sap-icon://home" type="Transparent" press=".navHome">
+            <layoutData>
+                <OverflowToolbarLayoutData priority="NeverOverflow" />
+            </layoutData>
+        </Button>
+        <Button text="{i18n>See all reservations}" type="Transparent">
+            <layoutData>
+                <OverflowToolbarLayoutData priority="Low" />
+            </layoutData>
+        </Button>
+        <Button text="{i18n>New reservation}" type="Transparent">
+            <layoutData>
+                <OverflowToolbarLayoutData priority="Low" />
+            </layoutData>
+        </Button>
+    </tnt:ToolHeader>
+    <FlexBox alignItems="Center" justifyContent="Center">
+        <List headerText="{i18n>newResHeader}" width="40em">
+            <CustomListItem>
+                <FlexBox alignItems="Center" justifyContent="Center">
+                    <Text id="selectedClientT" text="{i18n>SelectClientT}" class="sapUiSmallMargin" width="15em" />
+                    <Label id="selectedClientL" text="{i18n>SelectClientL}" class="sapUiSmallMargin" width="15em" />
+                    <Button text="select client" press=".onShowClientsList" ariaHasPopup="Dialog" class="sapUiTinyMargin" />
+                </FlexBox>
+            </CustomListItem>
+            <CustomListItem>
+                <FlexBox alignItems="Center" justifyContent="Center">
+                    <Text id="selectedDateFromT" text="{i18n>SelectDateFT}" class="sapUiSmallMarginTop sapUiSmallMarginBottom" width="20em" />
+                    <Label id="selectedDateFrom" text="{i18n>SelectDateFL}" width="20em" />
+                </FlexBox>
+            </CustomListItem>
+            <CustomListItem>
+                <FlexBox alignItems="Center" justifyContent="Center">
+                    <Text id="selectedDateToT" text="{i18n>SelectDateTT}" class="sapUiSmallMarginTop sapUiSmallMarginBottom" width="20em" />
+                    <Label id="selectedDateTo" text="{i18n>SelectDateTL}" width="20em" />
+                </FlexBox>
+            </CustomListItem>
+
+        </List>
+        <u:Calendar id="calendar" select="handleCalendarSelect" intervalSelection="true" weekNumberSelect="handleWeekNumberSelect" class="sapUiTinyMargin" />
+    </FlexBox>
+
+
+    <Dialog id="clientsListDialog" resizable="false" draggable="false" headerText="Register Form" title="{i18n>SelectClientHeader}" width="60em">
         <FlexBox alignItems="Center" justifyContent="Center">
-            <List headerText="{i18n>newResHeader}" width="40em">
-                <CustomListItem>
-                    <FlexBox alignItems="Center" justifyContent="Center">
-                        <Text id="selectedClientT" text="{i18n>SelectClientT}" class="sapUiSmallMargin" width="15em" />
-                        <Label id="selectedClientL" text="{i18n>SelectClientL}" class="sapUiSmallMargin" width="15em" />
-                        <Button text="select client" press=".onShowClientsList" ariaHasPopup="Dialog" class="sapUiTinyMargin" />
-                    </FlexBox>
-                </CustomListItem>
-                <CustomListItem>
-                    <FlexBox alignItems="Center" justifyContent="Center">
-                        <Text id="selectedDateFromT" text="{i18n>SelectDateFT}" class="sapUiSmallMarginTop sapUiSmallMarginBottom" width="20em" />
-                        <Label id="selectedDateFrom" text="{i18n>SelectDateFL}" width="20em" />
-                    </FlexBox>
-                </CustomListItem>
-                <CustomListItem>
-                    <FlexBox alignItems="Center" justifyContent="Center">
-                        <Text id="selectedDateToT" text="{i18n>SelectDateTT}" class="sapUiSmallMarginTop sapUiSmallMarginBottom" width="20em" />
-                        <Label id="selectedDateTo" text="{i18n>SelectDateTL}" width="20em" />
-                    </FlexBox>
-                </CustomListItem>
-
-            </List>
-            <u:Calendar id="calendar" select="handleCalendarSelect" intervalSelection="true" weekNumberSelect="handleWeekNumberSelect" class="sapUiTinyMargin" />
-        </FlexBox>
-
-
-        <Dialog id="clientsListDialog" resizable="false" draggable="false" headerText="Register Form" title="{i18n>SelectClientHeader}" width="60em">
-            <FlexBox alignItems="Center" justifyContent="Center">
-                <l:VerticalLayout>
-                    <Table id="ClientsTable" items="{
+            <l:VerticalLayout>
+                <Table id="ClientsTable" items="{
                             path: '/Clients'
                         }" width="60em" type="Navigation"
-                        press="onPress">
-                        <headerToolbar>
-                            <OverflowToolbar>
-                                <ToolbarSpacer />
-                                <SearchField id="searchField" search=".onSearch">
-                                    <layoutData>
-                                        <OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow" />
-                                    </layoutData>
-                                </SearchField>
-                            </OverflowToolbar>
-                        </headerToolbar>
-                        <columns>
-                            <Column>
-                                <Label text="{i18n>tName}" />
-                            </Column>
-                            <Column>
-                                <Label text="{i18n>tPhone}" />
-                            </Column>
-                            <Column>
-                                <Label text="{i18n>tEmail}" />
-                            </Column>
-                        </columns>
-                        <items>
-                            <ColumnListItem id="cli" type="Navigation" press="onClientSelect">
-                                <Text text="{FirstName} {SecondName}" />
-                                <Text text="{PhoneNumber}" />
-                                <Text text="{email}" />
-                            </ColumnListItem>
-                        </items>
-                    </Table>
-                </l:VerticalLayout>
-            </FlexBox>
-            <beginButton>
-                <Button
-                    text="{i18n>dialogCloseButtonText}"
-                    press=".onCloseDialog" />
-            </beginButton>
-        </Dialog>
-        <Button text="test" press=".getDataTest" />
-    </Page>
+                    press="onPress">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <ToolbarSpacer />
+                            <SearchField id="searchField" search=".onSearch">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow" />
+                                </layoutData>
+                            </SearchField>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column>
+                            <Label text="{i18n>tName}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>tPhone}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>tEmail}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem id="cli" type="Navigation" press="onClientSelect">
+                            <Text text="{FirstName} {SecondName}" />
+                            <Text text="{PhoneNumber}" />
+                            <Text text="{email}" />
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </l:VerticalLayout>
+        </FlexBox>
+        <beginButton>
+            <Button
+                text="{i18n>dialogCloseButtonText}"
+                press=".onCloseDialog" />
+        </beginButton>
+    </Dialog>
+    <Button text="test" press=".getDataTest" />
 </mvc:View>

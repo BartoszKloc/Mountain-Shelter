@@ -82,16 +82,9 @@ sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/unified/DateRange', 'sap/m/
 
                 this._updateText(oCalendar.getSelectedDates()[0]);
             },
-            onNavBack: function () {
-                var oHistory = History.getInstance();
-                var sPreviousHash = oHistory.getPreviousHash();
-
-                if (sPreviousHash !== undefined) {
-                    window.history.go(-1);
-                } else {
-                    var oRouter = this.getOwnerComponent().getRouter();
-                    oRouter.navTo("MainView", {}, true);
-                }
+            navHome: function () {
+                const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("RouteMainView");
             },
 
             //Select client Dialog:

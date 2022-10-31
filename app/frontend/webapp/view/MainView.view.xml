@@ -1,30 +1,31 @@
-<mvc:View controllerName="bksoft.frontend.controller.MainView" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-    <Page id="page">
+<mvc:View controllerName="bksoft.frontend.controller.MainView" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt">
+    <tnt:ToolHeader>
         <Label text="  {i18n>changeThemeText}   " />
         <Switch id="themeSwitch" state="false" customTextOn=" " customTextOff=" " change="toggleThemeChange" />
-        <FlexBox height="40vh" alignItems="Center" justifyContent="Center">
-            <items>
-                <Image id="capLogo" height="40vh" src="../webapp/images/baner.jpg" />
-            </items>
-        </FlexBox>
-        <FlexBox height="40vh" alignItems="Center" justifyContent="Center">
-            <items>
-                <GenericTile header="{i18n>roomsTileHeader}" press=".onBooksPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout">
-                    <TileContent footer="{i18n>roomsTileFooter}">
-                        <ImageContent src="../webapp/images/roomview.jpg" />
-                    </TileContent>
-                </GenericTile>
-                <GenericTile header="{i18n>mkresTileHeader}" press=".onResPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout">
-                    <TileContent footer="{i18n>mkresTileFooter}">
-                        <ImageContent src="sap-icon://calendar" />
-                    </TileContent>
-                </GenericTile>
-                <GenericTile header="{i18n>clientsTileHeader}" press=".onClientsPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout">
-                    <TileContent footer="{i18n>clientsTileFooter}">
-                        <ImageContent src="sap-icon://account" />
-                    </TileContent>
-                </GenericTile>
-            </items>
-        </FlexBox>
-    </Page>
+    </tnt:ToolHeader>
+
+    <FlexBox height="40vh" alignItems="Center" justifyContent="Center" class="sapUiTinyMargin">
+        <items>
+            <Image id="capLogo" height="40vh" src="../webapp/images/baner.jpg" />
+        </items>
+    </FlexBox>
+    <FlexBox height="40vh" alignItems="Center" justifyContent="Center">
+        <items>
+            <GenericTile header="{i18n>roomsTileHeader}" press=".onBooksPress" class="sapUiSmallMargin tileLayout">
+                <TileContent footer="{i18n>roomsTileFooter}">
+                    <ImageContent src="../webapp/images/roomview.jpg" />
+                </TileContent>
+            </GenericTile>
+            <GenericTile header="{i18n>mkresTileHeader}" press=".onResPress" class="sapUiSmallMargin tileLayout">
+                <TileContent footer="{i18n>mkresTileFooter}">
+                    <ImageContent src="sap-icon://calendar" />
+                </TileContent>
+            </GenericTile>
+            <GenericTile header="{i18n>clientsTileHeader}" press=".onClientsPress" class="sapUiSmallMargin tileLayout">
+                <TileContent footer="{i18n>clientsTileFooter}">
+                    <ImageContent src="sap-icon://account" />
+                </TileContent>
+            </GenericTile>
+        </items>
+    </FlexBox>
 </mvc:View>
