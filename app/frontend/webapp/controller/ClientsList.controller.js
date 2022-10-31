@@ -51,6 +51,7 @@ sap.ui.define([
             //create dialog:
             this.oResizableDialog = new Dialog({
                 title: "{i18n>confirmAction}",
+                class: "sapUiMediumMargin",
                 resizable: false,
                 content:
                     new Text({

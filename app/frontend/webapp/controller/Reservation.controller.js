@@ -87,6 +87,16 @@ sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/unified/DateRange', 'sap/m/
                 oRouter.navTo("RouteMainView");
             },
 
+            //New reservation Dialog:
+            newResOpen: function () {
+                var oDialog = this.getView().byId("newResDialog");
+                oDialog.open();
+            },
+            onCloseNewRes: function () {
+                var oDialog = this.getView().byId("newResDialog");
+                oDialog.close();
+            },
+
             //Select client Dialog:
             onShowClientsList: function () {
                 const oDialog = this.getView().byId("clientsListDialog");
