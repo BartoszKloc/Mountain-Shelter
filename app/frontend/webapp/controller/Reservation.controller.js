@@ -165,10 +165,11 @@ sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/unified/DateRange', 'sap/m/
 
                 //changing format of start date and end date for get request
                 var dateStartARG = changeDateFormat(ReservationData.startDate);
+                var dateEndARG = changeDateFormat(ReservationData.endDate);
                 console.log(dateStartARG);
 
                 //get request for getting all available beds
-                const URLstring = `/catalog/getVacancy(dateStart='` + dateStartARG + `')`
+                const URLstring = `/catalog/getVacancy(dateStart='` + dateStartARG + `',dateEnd='` + dateEndARG + `')`
                 var resHeaders = await fetch(URLstring);
                 resHeaders;
             }
