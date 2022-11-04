@@ -5,11 +5,6 @@
                 <OverflowToolbarLayoutData priority="NeverOverflow" />
             </layoutData>
         </Button>
-        <Button text="{i18n>See all reservations}" type="Transparent">
-            <layoutData>
-                <OverflowToolbarLayoutData priority="Low" />
-            </layoutData>
-        </Button>
         <Button text="{i18n>New reservation}" type="Transparent" press=".newResOpen" ariaHasPopup="Dialog">
             <layoutData>
                 <OverflowToolbarLayoutData priority="Low" />
@@ -96,4 +91,36 @@
                 press=".onCloseNewRes" />
         </beginButton>
     </Dialog>
+    <Table id="ReservationsTable" items="{
+        path: '/Reservations'
+    }" width="60em">
+        <headerToolbar>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <SearchField id="searchResField" search=".onResSearch">
+                    <layoutData>
+                        <OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow" />
+                    </layoutData>
+                </SearchField>
+            </OverflowToolbar>
+        </headerToolbar>
+        <columns>
+            <Column>
+                <Label text="{i18n>Client}" />
+            </Column>
+            <Column>
+                <Label text="{i18n>Bed}" />
+            </Column>
+            <Column>
+                <Label text="{i18n>Date}" />
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem id="res">
+                <Text text="{Clients}" />
+                <Text text="{Beds}" />
+                <Text text="{dateSTART} - {dateSTOP}" />
+            </ColumnListItem>
+        </items>
+    </Table>
 </mvc:View>

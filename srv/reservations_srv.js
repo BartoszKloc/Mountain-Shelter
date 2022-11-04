@@ -31,6 +31,7 @@ module.exports = srv => {
         }),
         srv.on("getVacancy", async (req, res) => {
             const result = await SELECT.from(Reservations).where({ dateSTART: req.data.dateStart });
+            console.log(result);
             return result;
         })
 }; 

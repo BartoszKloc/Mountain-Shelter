@@ -107,6 +107,8 @@ sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/unified/DateRange', 'sap/m/
                 oDialog.close();
             },
             onClientSelect: function (oEvent) {
+                //function that gets all data of selected client and puts it into ReservationData object
+
                 const oClient = oEvent.getSource().getBindingContext().getObject();
                 const oID = oClient.ID;
                 ReservationData.clientID = oID;
@@ -122,7 +124,35 @@ sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/unified/DateRange', 'sap/m/
                 const oDialog = this.getView().byId("clientsListDialog");
                 oDialog.close();
             },
-            getDataTest: function () {
+            getDataTest: async function () {
+                function monthToInt(monthTxt) {
+                    switch (monthTxt) {
+                        case "Jan": return 1;
+                        case "Feb": return 2;
+                        case "Mar": return 3;
+                        case "Apr": return 4;
+                        case "May": return 5;
+                        case "Jun": return 6;
+                        case "Jul": return 7;
+                        case "Aug": return 8;
+                        case "Sep": return 9;
+                        case "Oct": return 10;
+                        case "Nov": return 11;
+                        case "Dec": return 12;
+                    }
+                }
+
+                //function that change data format to proper format for fetch request
+                function changeDateFormat(date) {
+                    var result;
+                    var year = String(date).slice(11, 15);
+                    var month = String(date).slice(4, 7);
+                    var day = String(date).slice(8, 10);
+                    result = String(year + "-" + monthToInt(month) + "-" + day + " 00:00:00");
+                    return result;
+                }
+
+                //checking if any input is empty
                 if (ReservationData.clientID !== " " && ReservationData.startDate !== " " && ReservationData.endDate !== " ") {
                     alert(ReservationData.clientID);
                     console.log(ReservationData.clientID);
@@ -131,7 +161,16 @@ sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/unified/DateRange', 'sap/m/
                     console.log(ReservationData.startDate);
                     console.log(ReservationData.endDate);
                 }
-                else MessageToast.show("Empty field!")
+                else MessageToast.show("Empty field!");
+
+                //changing format of start date and end date for get request
+                var dateStartARG = changeDateFormat(ReservationData.startDate);
+                console.log(dateStartARG);
+
+                //get request for getting all available beds
+                const URLstring = `/catalog/getVacancy(dateStart='` + dateStartARG + `')`
+                var resHeaders = await fetch(URLstring);
+                resHeaders;
             }
         });
 
