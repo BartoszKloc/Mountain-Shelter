@@ -120,6 +120,8 @@ sap.ui.define([
 
             this.oResizableDialog.open();
         },
+
+        //input dialog open and close:
         handleOpen: function () {
             var oDialog = this.getView().byId("inputDialog");
             oDialog.open();
@@ -128,5 +130,15 @@ sap.ui.define([
             var oDialog = this.getView().byId("inputDialog");
             oDialog.close();
         },
+
+        //edit dialog open and close:
+        editClient: function () {
+            var oDialog = this.getView().byId("editDialog");
+            oDialog.open();
+        },
+        onCloseEdit: function () {
+            var oDialog = this.getView().byId("editDialog");
+            oDialog.close();
+        }
     });
 });

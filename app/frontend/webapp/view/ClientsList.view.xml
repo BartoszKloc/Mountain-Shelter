@@ -36,6 +36,30 @@
         </Dialog>
     </l:VerticalLayout>
 
+    <!--Dialog for editing data about client-->
+    <l:VerticalLayout class="sapUiContentPadding" width="100%">
+        <Dialog id="editDialog" resizable="true" draggable="true" headerText="Register Form" title="{i18n>InputHeader}">
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <l:VerticalLayout>
+                    <Label for="firstnameE" showColon="true" text="{i18n>eFN}" />
+                    <Input id="firstnameE" placeholder="Enter first name" />
+                    <Label for="secondnameE" showColon="true" text="{i18n>eSN}" />
+                    <Input id="secondnameE" placeholder="Enter second name" />
+                    <Label for="phoneE" showColon="true" text="{i18n>ePhNum}" />
+                    <Input id="phoneE" placeholder="Enter phone number" />
+                    <Label for="emailE" showColon="true" text="{i18n>eEmail}" />
+                    <Input id="emailE" placeholder="Enter email" />
+                </l:VerticalLayout>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <Button design="Emphasized" press=".onSubmitEdit" text="Submit"
+                    class="sapUiMediumMargin" />
+                <Button design="Emphasized" press=".onCloseEdit" text="Close"
+                    class="sapUiMediumMargin" />
+            </FlexBox>
+        </Dialog>
+    </l:VerticalLayout>
+
     <!--Table with clients-->
     <FlexBox alignItems="Center" justifyContent="Center">
         <Table id="ClientsTable" items="{
