@@ -8,7 +8,18 @@ sap.ui.define([
     "sap/m/Text"
 ], function (Controller, MessageToast, Filter, FilterOperator, Dialog, Button, Text) {
     "use strict";
-    let searchProperty = "SecondName"
+    //selected property that is the key in search bar
+    let searchProperty = "SecondName";
+
+    //object for properties that will be send in post request in edit client dialog:
+    let editingClientData = {
+        clientID: " ",
+        clientFN: " ",
+        clientSN: " ",
+        clientPhoneNum: " ",
+        clientEmail: " "
+    };
+
     return Controller.extend("bksoft.frontend.controller.ClientsList", {
         onInit: function () {
         },
@@ -18,6 +29,7 @@ sap.ui.define([
             var sClientPhoneNum = this.byId("phone").getValue();
             var sClientEmail = this.byId("email").getValue();
 
+            //post request while adding new client
             if ((sClientFirstName != "") && (sClientSecondName != "") && (sClientPhoneNum != "") && (sClientEmail != "")) {
                 MessageToast.show("client added");
                 let oClientData = {
@@ -137,10 +149,19 @@ sap.ui.define([
             //get selected client data:
             const oClient = oEvent.getSource().getBindingContext().getObject();
             const oID = oClient.ID;
+            editingClientData.clientID = oID;
+
             const oFirstName = oClient.FirstName;
+            editingClientData.clientFN = oFirstName;
+
             const oSecondName = oClient.SecondName;
+            editingClientData.clientSN = oSecondName;
+
             const oPhoneNum = oClient.PhoneNumber;
+            editingClientData.clientPhoneNum = oPhoneNum;
+
             const oEmail = oClient.email;
+            editingClientData.clientEmail = oEmail;
 
             //get input values from the view:
             const oFNvalue = this.byId("firstnameE");
@@ -156,6 +177,16 @@ sap.ui.define([
             oDialog.open();
         },
         onCloseEdit: function () {
+            var oDialog = this.getView().byId("editDialog");
+            oDialog.close();
+        },
+        onSubmitEdit: async function () {
+            //(ID : UUID, FirstName : String, SecondName : String, PhoneNumber : String, email : String)
+            const URLstring = `/catalog/updateClient(ID='` + editingClientData.clientID + `',FirstName='` + editingClientData.clientFN + `',SecondName='` + editingClientData.clientSN + `',PhoneNumber='` + editingClientData.clientPhoneNum + `',email='` + editingClientData.clientEmail + `')`;
+            console.log(URLstring);
+            var resHeaders = await fetch(URLstring);
+            resHeaders;
+            MessageToast.show("client has been updated");
             var oDialog = this.getView().byId("editDialog");
             oDialog.close();
         }

@@ -5,6 +5,7 @@ service CatalogService {
     entity Beds         as projection on interactions.Beds;
     entity Reservations as projection on interactions.Reservations;
     entity Clients      as projection on interactions.Clients;
-    function delete(msg : String)                             returns String;
-    function getVacancy(dateStart : String, dateEnd : String) returns String;
+    function delete(msg : String)                                                                                     returns String;
+    function getVacancy(dateStart : String, dateEnd : String)                                                         returns String;
+    function updateClient(ID : String, FirstName : String, SecondName : String, PhoneNumber : String, email : String) returns String;
 }

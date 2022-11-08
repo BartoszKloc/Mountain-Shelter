@@ -31,7 +31,15 @@ module.exports = srv => {
         }),
         srv.on("getVacancy", async (req, res) => {
             const result = await SELECT.from(Reservations).where({ dateSTART: req.data.dateStart });
-            console.log(result);
             return result;
+        }),
+        srv.on("updateClient", async (req, res) => {
+            const result = await UPDATE(Clients).with({
+                FirstName: req.data.FirstName,
+                SecondName: req.data.SecondName,
+                PhoneNumber: req.data.PhoneNumber,
+                email: req.data.email
+            }).where({ ID: req.data.ID });
+            console.log(result);
         })
 }; 
