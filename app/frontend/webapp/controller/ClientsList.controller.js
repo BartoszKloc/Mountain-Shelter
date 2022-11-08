@@ -132,8 +132,27 @@ sap.ui.define([
         },
 
         //edit dialog open and close:
-        editClient: function () {
+        editClient: function (oEvent) {
             var oDialog = this.getView().byId("editDialog");
+            //get selected client data:
+            const oClient = oEvent.getSource().getBindingContext().getObject();
+            const oID = oClient.ID;
+            const oFirstName = oClient.FirstName;
+            const oSecondName = oClient.SecondName;
+            const oPhoneNum = oClient.PhoneNumber;
+            const oEmail = oClient.email;
+
+            //get input values from the view:
+            const oFNvalue = this.byId("firstnameE");
+            const oSNvalue = this.byId("secondnameE");
+            const oPhoneNumValue = this.byId("phoneE");
+            const oEmailValue = this.byId("emailE");
+
+            //update input values in view:
+            oFNvalue.setValue(oFirstName);
+            oSNvalue.setValue(oSecondName);
+            oPhoneNumValue.setValue(oPhoneNum);
+            oEmailValue.setValue(oEmail);
             oDialog.open();
         },
         onCloseEdit: function () {

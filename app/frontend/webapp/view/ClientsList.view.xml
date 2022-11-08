@@ -38,7 +38,7 @@
 
     <!--Dialog for editing data about client-->
     <l:VerticalLayout class="sapUiContentPadding" width="100%">
-        <Dialog id="editDialog" resizable="true" draggable="true" headerText="Register Form" title="{i18n>InputHeader}">
+        <Dialog id="editDialog" resizable="true" draggable="true" headerText="Register Form" title="{i18n>EditHeader}">
             <FlexBox alignItems="Center" justifyContent="Center">
                 <l:VerticalLayout>
                     <Label for="firstnameE" showColon="true" text="{i18n>eFN}" />
