@@ -181,9 +181,14 @@ sap.ui.define([
             oDialog.close();
         },
         onSubmitEdit: async function () {
+            const oFNvalue = this.byId("firstnameE").getValue();
+            const oSNvalue = this.byId("secondnameE").getValue();
+            const oPhoneNumValue = this.byId("phoneE").getValue();
+            const oEmailValue = this.byId("emailE").getValue();
+
             //(ID : UUID, FirstName : String, SecondName : String, PhoneNumber : String, email : String)
-            const URLstring = `/catalog/updateClient(ID='` + editingClientData.clientID + `',FirstName='` + editingClientData.clientFN + `',SecondName='` + editingClientData.clientSN + `',PhoneNumber='` + editingClientData.clientPhoneNum + `',email='` + editingClientData.clientEmail + `')`;
-            console.log(URLstring);
+            const URLstring = `/catalog/updateClient(ID='` + editingClientData.clientID + `',FirstName='` + oFNvalue + `',SecondName='` + oSNvalue + `',PhoneNumber='` + oPhoneNumValue + `',email='` + oEmailValue + `')`;
+
             var resHeaders = await fetch(URLstring);
             resHeaders;
             MessageToast.show("client has been updated");
