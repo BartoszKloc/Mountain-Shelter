@@ -84,7 +84,10 @@
                     <Text text="{FirstName} {SecondName}" />
                     <Text text="{PhoneNumber}" />
                     <Text text="{email}" />
-                    <Button text="Delete" press=".deleteClient" ariaHasPopup="Dialog" />
+                    <FlexBox alignItems="Center">
+                        <Button text="{i18n>editBtn}" press=".editClient" ariaHasPopup="Dialog" class="sapUiMediumMarginEnd" />
+                        <Button text="{i18n>deleteBtn}" press=".deleteClient" ariaHasPopup="Dialog" class="sapUiLargeMarginEnd" />
+                    </FlexBox>
                 </ColumnListItem>
             </items>
         </Table>
