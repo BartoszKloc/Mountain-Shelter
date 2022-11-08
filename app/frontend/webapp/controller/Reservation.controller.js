@@ -1,5 +1,6 @@
-sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/unified/DateRange', 'sap/m/MessageToast', 'sap/ui/core/format/DateFormat', 'sap/ui/core/library', 'sap/ui/core/routing/History'],
-    function (Controller, DateRange, MessageToast, DateFormat, coreLibrary, History) {
+sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/unified/DateRange', 'sap/m/MessageToast', 'sap/ui/core/format/DateFormat', 'sap/ui/core/library', 'sap/ui/core/routing/History', 'sap/ui/model/Filter',
+    'sap/ui/model/FilterOperator',],
+    function (Controller, DateRange, MessageToast, DateFormat, coreLibrary, Filter, FilterOperator) {
         "use strict";
 
         var CalendarType = coreLibrary.CalendarType;
@@ -172,7 +173,31 @@ sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/unified/DateRange', 'sap/m/
                 const URLstring = `/catalog/getVacancy(dateStart='` + dateStartARG + `',dateEnd='` + dateEndARG + `')`
                 var resHeaders = await fetch(URLstring);
                 resHeaders;
-            }
+            },
+            //searching for client:
+            onSearch: function (oEvent) {
+                if (oEvent.getParameters().refreshButtonPressed) {
+                    this.onRefresh();
+                } else {
+                    var aTableSearchState = [];
+                    var sQuery = oEvent.getParameter("query");
+
+                    if (sQuery && sQuery.length > 0) {
+                        aTableSearchState = [new Filter("SecondName", FilterOperator.Contains, sQuery)];
+                    }
+                    this._applySearch(aTableSearchState);
+                }
+
+            },
+            onRefresh: function () {
+                var oTable = this.byId("table");
+                oTable.getBinding("items").refresh();
+            },
+            _applySearch: function (aTableSearchState) {
+                var oTable = this.byId("ClientsTable");
+                oTable.getBinding("items").filter(aTableSearchState, "Application");
+            },
+            //####################
         });
 
     });

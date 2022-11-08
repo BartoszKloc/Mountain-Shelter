@@ -11,6 +11,8 @@
             </layoutData>
         </Button>
     </tnt:ToolHeader>
+
+    <!--Dialog for creating new client-->
     <l:VerticalLayout class="sapUiContentPadding" width="100%">
         <Dialog id="inputDialog" resizable="true" draggable="true" headerText="Register Form" title="{i18n>InputHeader}">
             <FlexBox alignItems="Center" justifyContent="Center">
@@ -33,6 +35,8 @@
             </FlexBox>
         </Dialog>
     </l:VerticalLayout>
+
+    <!--Table with clients-->
     <FlexBox alignItems="Center" justifyContent="Center">
         <Table id="ClientsTable" items="{
                 path: '/Clients'
@@ -40,6 +44,20 @@
             <headerToolbar>
                 <OverflowToolbar>
                     <ToolbarSpacer />
+                    <Text text="{i18n>selectSearchProperty}   " />
+                    <ActionSelect
+                        id="select"
+                        buttons="btnFN btnSN btnPhoneNum btnEmail"
+                        text="d0pa"
+                    >
+                        <!-- buttons to define by what property do you want to searh-->
+                        <dependents>
+                            <Button id="btnFN" text="{i18n>eFN}" press=".byFN" />
+                            <Button id="btnSN" text="{i18n>eSN}" press=".bySN" />
+                            <Button id="btnPhoneNum" text="{i18n>ePhNum}" press=".byPhoneNum" />
+                            <Button id="btnEmail" text="{i18n>eEmail}" press=".byEmail" />
+                        </dependents>
+                    </ActionSelect>
                     <SearchField id="searchField" search=".onSearch">
                         <layoutData>
                             <OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow" />

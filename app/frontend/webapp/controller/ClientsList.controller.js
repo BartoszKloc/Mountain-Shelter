@@ -1,15 +1,14 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
-    "sap/ui/model/json/JSONModel",
-    "sap/ui/core/routing/History",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/m/Dialog",
     "sap/m/Button",
     "sap/m/Text"
-], function (Controller, MessageToast, JSONModel, History, Filter, FilterOperator, Dialog, Button, Text) {
+], function (Controller, MessageToast, Filter, FilterOperator, Dialog, Button, Text) {
     "use strict";
+    let searchProperty = "SecondName"
     return Controller.extend("bksoft.frontend.controller.ClientsList", {
         onInit: function () {
         },
@@ -37,19 +36,17 @@ sap.ui.define([
             }
             else MessageToast.show("Empty field!");
         },
+
+        //search bar mechanics:
         onSearch: function (oEvent) {
             if (oEvent.getParameters().refreshButtonPressed) {
-                // Search field's 'refresh' button has been pressed.
-                // This is visible if you select any main list item.
-                // In this case no new search is triggered, we only
-                // refresh the list binding.
                 this.onRefresh();
             } else {
                 var aTableSearchState = [];
                 var sQuery = oEvent.getParameter("query");
 
                 if (sQuery && sQuery.length > 0) {
-                    aTableSearchState = [new Filter("SecondName", FilterOperator.Contains, sQuery)];
+                    aTableSearchState = [new Filter(searchProperty, FilterOperator.Contains, sQuery)];
                 }
                 this._applySearch(aTableSearchState);
             }
@@ -63,6 +60,21 @@ sap.ui.define([
             var oTable = this.byId("ClientsTable");
             oTable.getBinding("items").filter(aTableSearchState, "Application");
         },
+        //select property for searching:
+        byFN: function () {
+            searchProperty = "FirstName";
+        },
+        bySN: function () {
+            searchProperty = "SecondName";
+        },
+        byPhoneNum: function () {
+            searchProperty = "PhoneNumber";
+        },
+        byEmail: function () {
+            searchProperty = "email";
+        },
+        //#####################################################
+
         navHome: function () {
             const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.navTo("RouteMainView");
