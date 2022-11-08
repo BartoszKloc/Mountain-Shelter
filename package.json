@@ -7,18 +7,19 @@
   "private": true,
   "dependencies": {
     "@sap/cds": "^6",
+    "@sap/xssec": "^3",
     "express": "^4",
     "hdb": "^0.19.0",
-    "@sap/xssec": "^3",
     "passport": "^0"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.102.9",
+    "@sap/ux-specification": "^1.102.11",
     "sqlite3": "^5.0.4"
   },
   "scripts": {
     "start": "cds run",
-    "watch-frontend": "cds watch --open frontend/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-frontend": "cds watch --open frontend/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-test-frontend": "cds watch --open test-frontend/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "engines": {
     "node": "^16.15"
@@ -73,6 +74,7 @@
     }
   },
   "sapux": [
-    "app/frontend"
+    "app/frontend",
+    "app/test-frontend"
   ]
 }

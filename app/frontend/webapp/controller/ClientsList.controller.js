@@ -37,6 +37,32 @@ sap.ui.define([
             }
             else MessageToast.show("Empty field!");
         },
+        onSearch: function (oEvent) {
+            if (oEvent.getParameters().refreshButtonPressed) {
+                // Search field's 'refresh' button has been pressed.
+                // This is visible if you select any main list item.
+                // In this case no new search is triggered, we only
+                // refresh the list binding.
+                this.onRefresh();
+            } else {
+                var aTableSearchState = [];
+                var sQuery = oEvent.getParameter("query");
+
+                if (sQuery && sQuery.length > 0) {
+                    aTableSearchState = [new Filter("SecondName", FilterOperator.Contains, sQuery)];
+                }
+                this._applySearch(aTableSearchState);
+            }
+
+        },
+        onRefresh: function () {
+            var oTable = this.byId("table");
+            oTable.getBinding("items").refresh();
+        },
+        _applySearch: function (aTableSearchState) {
+            var oTable = this.byId("ClientsTable");
+            oTable.getBinding("items").filter(aTableSearchState, "Application");
+        },
         navHome: function () {
             const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.navTo("RouteMainView");
@@ -90,19 +116,5 @@ sap.ui.define([
             var oDialog = this.getView().byId("inputDialog");
             oDialog.close();
         },
-        onSearch: function (oEvent) {
-
-            // build filter array
-            var aFilter = [];
-            var sQuery = oEvent.getParameter("query");
-            if (sQuery) {
-                aFilter.push(new Filter("email", FilterOperator.Contains, sQuery));
-            }
-
-            // filter binding
-            var oList = this.byId("ClientsTable");
-            var oBinding = oList.getBinding("email");
-            oBinding.filter(aFilter);
-        }
     });
 });
