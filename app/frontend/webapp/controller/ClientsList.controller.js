@@ -8,8 +8,6 @@ sap.ui.define([
     "sap/m/Text"
 ], function (Controller, MessageToast, Filter, FilterOperator, Dialog, Button, Text) {
     "use strict";
-    //selected property that is the key in search bar
-    let searchProperty = "SecondName";
 
     //object for properties that will be send in post request in edit client dialog:
     let editingClientData = {
@@ -24,26 +22,34 @@ sap.ui.define([
         onInit: function () {
         },
         onSubmit: function () {
-            var sClientFirstName = this.byId("firstname").getValue();
-            var sClientSecondName = this.byId("secondname").getValue();
-            var sClientPhoneNum = this.byId("phone").getValue();
-            var sClientEmail = this.byId("email").getValue();
+            var sClientFirstName = this.byId("firstname");
+            var sClientSecondName = this.byId("secondname");
+            var sClientPhoneNum = this.byId("phone");
+            var sClientEmail = this.byId("email");
+            var oDialog = this.getView().byId("inputDialog");
 
             //post request while adding new client
             if ((sClientFirstName != "") && (sClientSecondName != "") && (sClientPhoneNum != "") && (sClientEmail != "")) {
-                MessageToast.show("client added");
                 let oClientData = {
-                    FirstName: sClientFirstName,
-                    SecondName: sClientSecondName,
-                    PhoneNumber: sClientPhoneNum,
-                    email: sClientEmail
+                    FirstName: sClientFirstName.getValue(),
+                    SecondName: sClientSecondName.getValue(),
+                    PhoneNumber: sClientPhoneNum.getValue(),
+                    email: sClientEmail.getValue()
                 }
 
                 $.ajax({
                     type: "POST",
                     data: JSON.stringify(oClientData),
                     url: "/catalog/Clients",
-                    contentType: "application/json"
+                    contentType: "application/json",
+                    success: function (data) {
+                        MessageToast.show("client added");
+                        oDialog.close();
+                        sClientFirstName.setValue("");
+                        sClientSecondName.setValue("");
+                        sClientPhoneNum.setValue("");
+                        sClientEmail.setValue("");
+                    }
                 });
             }
             else MessageToast.show("Empty field!");
@@ -51,39 +57,28 @@ sap.ui.define([
 
         //search bar mechanics:
         onSearch: function (oEvent) {
-            if (oEvent.getParameters().refreshButtonPressed) {
-                this.onRefresh();
-            } else {
-                var aTableSearchState = [];
-                var sQuery = oEvent.getParameter("query");
+            //select property for searching:
+            var actionSelect = this.byId("select").getSelectedItem();
 
-                if (sQuery && sQuery.length > 0) {
-                    aTableSearchState = [new Filter(searchProperty, FilterOperator.Contains, sQuery)];
-                }
-                this._applySearch(aTableSearchState);
+            let searchProperty = "FirstName";
+            if (actionSelect.sId == "container-bksoft.frontend---ClientsList--selFN") this.searchProperty = "FirstName";
+            else if (actionSelect.sId == "container-bksoft.frontend---ClientsList--selSN") this.searchProperty = "SecondName";
+            else if (actionSelect.sId == "container-bksoft.frontend---ClientsList--selPhNum") this.searchProperty = "PhoneNumber";
+            else if (actionSelect.sId == "container-bksoft.frontend---ClientsList--selEmail") this.searchProperty = "email";
+            console.log(searchProperty);
+
+            var aTableSearchState = [];
+            var sQuery = oEvent.getParameter("query");
+
+            if (sQuery && sQuery.length > 0) {
+                aTableSearchState = [new Filter(searchProperty, FilterOperator.Contains, sQuery)];
             }
+            this._applySearch(aTableSearchState);
 
-        },
-        onRefresh: function () {
-            var oTable = this.byId("table");
-            oTable.getBinding("items").refresh();
         },
         _applySearch: function (aTableSearchState) {
             var oTable = this.byId("ClientsTable");
             oTable.getBinding("items").filter(aTableSearchState, "Application");
-        },
-        //select property for searching:
-        byFN: function () {
-            searchProperty = "FirstName";
-        },
-        bySN: function () {
-            searchProperty = "SecondName";
-        },
-        byPhoneNum: function () {
-            searchProperty = "PhoneNumber";
-        },
-        byEmail: function () {
-            searchProperty = "email";
         },
         //#####################################################
 
@@ -101,7 +96,6 @@ sap.ui.define([
             //create dialog:
             this.oResizableDialog = new Dialog({
                 title: "{i18n>confirmAction}",
-                class: "sapUiMediumMargin",
                 resizable: false,
                 content:
                     new Text({

@@ -1,4 +1,4 @@
-<mvc:View controllerName="bksoft.frontend.controller.ClientsList" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout">
+<mvc:View controllerName="bksoft.frontend.controller.ClientsList" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout">
     <tnt:ToolHeader>
         <Button icon="sap-icon://home" type="Transparent" press=".navHome">
             <layoutData>
@@ -71,16 +71,15 @@
                     <Text text="{i18n>selectSearchProperty}   " />
                     <ActionSelect
                         id="select"
-                        buttons="btnFN btnSN btnPhoneNum btnEmail"
-                        text="d0pa"
+                        items="val1 val2"
                     >
                         <!-- buttons to define by what property do you want to searh-->
-                        <dependents>
-                            <Button id="btnFN" text="{i18n>eFN}" press=".byFN" />
-                            <Button id="btnSN" text="{i18n>eSN}" press=".bySN" />
-                            <Button id="btnPhoneNum" text="{i18n>ePhNum}" press=".byPhoneNum" />
-                            <Button id="btnEmail" text="{i18n>eEmail}" press=".byEmail" />
-                        </dependents>
+                        <items>
+                            <core:Item id="selFN" text="{i18n>eFN}" />
+                            <core:Item id="selSN" text="{i18n>eSN}" />
+                            <core:Item id="selPhoneNum" text="{i18n>ePhNum}" />
+                            <core:Item id="selEmail" text="{i18n>eEmail}" />
+                        </items>
                     </ActionSelect>
                     <SearchField id="searchField" search=".onSearch">
                         <layoutData>
