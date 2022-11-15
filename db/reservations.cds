@@ -26,3 +26,12 @@ entity Clients {
         PhoneNumber : String(9);
         email       : String(30);
 };
+
+view Beds_Occupation as
+    select
+        Reservations.Beds,
+        Reservations.dateSTART,
+        Reservations.dateSTOP
+    from Reservations
+    inner join Beds
+        on Beds.number = Reservations.Beds;

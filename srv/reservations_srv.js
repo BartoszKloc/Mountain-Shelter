@@ -30,7 +30,7 @@ module.exports = srv => {
             return result;
         }),
         srv.on("getVacancy", async (req, res) => {
-            const result = await SELECT.from(Reservations).where({ dateSTART: req.data.dateStart });
+            const result = await SELECT.from(Reservations).innerjoin.where({ dateSTART: req.data.dateStart });
             return result;
         }),
         srv.on("updateClient", async (req, res) => {

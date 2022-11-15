@@ -18,6 +18,8 @@ sap.ui.define([
         clientEmail: " "
     };
 
+    var searchProperty = "FirstName";
+
     return Controller.extend("bksoft.frontend.controller.ClientsList", {
         onInit: function () {
         },
@@ -57,16 +59,6 @@ sap.ui.define([
 
         //search bar mechanics:
         onSearch: function (oEvent) {
-            //select property for searching:
-            var actionSelect = this.byId("select").getSelectedItem();
-
-            let searchProperty = "FirstName";
-            if (actionSelect.sId == "container-bksoft.frontend---ClientsList--selFN") this.searchProperty = "FirstName";
-            else if (actionSelect.sId == "container-bksoft.frontend---ClientsList--selSN") this.searchProperty = "SecondName";
-            else if (actionSelect.sId == "container-bksoft.frontend---ClientsList--selPhNum") this.searchProperty = "PhoneNumber";
-            else if (actionSelect.sId == "container-bksoft.frontend---ClientsList--selEmail") this.searchProperty = "email";
-            console.log(searchProperty);
-
             var aTableSearchState = [];
             var sQuery = oEvent.getParameter("query");
 
@@ -188,6 +180,11 @@ sap.ui.define([
             MessageToast.show("client has been updated");
             var oDialog = this.getView().byId("editDialog");
             oDialog.close();
+        },
+        //select property for searching:
+        onDataChange: function () {
+            var key = this.byId("select").getSelectedKey();
+            searchProperty = key;
         }
     });
 });
